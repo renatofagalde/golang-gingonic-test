@@ -23,3 +23,6 @@ data_local/**
 
 # Go workspace file
 go.work
+
+# intellij
+/.idea/

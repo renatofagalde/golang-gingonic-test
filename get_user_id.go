@@ -1,4 +1,4 @@
-package golang_gingonic_test
+package test
 
 import (
 	"fmt"
