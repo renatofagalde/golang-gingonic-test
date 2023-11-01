@@ -2,9 +2,11 @@ package test
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"strconv"
 	"testing"
 )
 
@@ -15,7 +17,7 @@ func TestGetUserId(t *testing.T) {
 	params := []gin.Param{
 		{
 			Key:   "id",
-			Value: "test",
+			Value: "1",
 		},
 	}
 
@@ -24,6 +26,10 @@ func TestGetUserId(t *testing.T) {
 
 	MakeGet(context, params, u)
 	GetUserId(context)
+
+	assert.EqualValues(t, http.StatusOK, recorder.Code)
+	got, _ := strconv.Atoi(recorder.Body.String())
+	assert.EqualValues(t, 1, got)
 
 }
 func GetTestGinContext(recorder *httptest.ResponseRecorder) *gin.Context {
